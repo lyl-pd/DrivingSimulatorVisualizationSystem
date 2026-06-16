@@ -9,7 +9,7 @@ function createMotionPlatform() {
 
   const base = new THREE.Mesh(
     new THREE.BoxGeometry(7, 0.6, 7),
-    new THREE.MeshStandardMaterial({ color: 0x10151c, metalness: 0.8, roughness: 0.35 })
+    new THREE.MeshStandardMaterial({ color: 0x1a2535, metalness: 0.85, roughness: 0.25 })
   );
   base.position.y = 0.3;
   base.castShadow = true;
@@ -19,7 +19,7 @@ function createMotionPlatform() {
   // 蓝色发光描边
   const edges = new THREE.LineSegments(
     new THREE.EdgesGeometry(new THREE.BoxGeometry(7.05, 0.66, 7.05)),
-    new THREE.LineBasicMaterial({ color: 0x00ccff })
+    new THREE.LineBasicMaterial({ color: 0x00eeff })
   );
   edges.position.y = 0.3;
   group.add(edges);
@@ -35,7 +35,7 @@ function createScreen() {
 
   const frame = new THREE.Mesh(
     new THREE.BoxGeometry(8.4, 4.6, 0.3),
-    new THREE.MeshStandardMaterial({ color: 0x00ccff, emissive: 0x0066aa, emissiveIntensity: 0.6, metalness: 0.4, roughness: 0.4 })
+    new THREE.MeshStandardMaterial({ color: 0x00ddff, emissive: 0x0088cc, emissiveIntensity: 1.2, metalness: 0.4, roughness: 0.3 })
   );
   group.add(frame);
 
@@ -199,11 +199,11 @@ export function buildServer(data) {
   const group = new THREE.Group();
 
   const isMaster = data.role === 'master';
-  const rackColor = isMaster ? 0x1a2740 : 0x161b22;
+  const rackColor = isMaster ? 0x1e3560 : 0x0e131c;
 
   const rack = new THREE.Mesh(
     new THREE.BoxGeometry(2.4, 5, 2),
-    new THREE.MeshStandardMaterial({ color: rackColor, metalness: 0.7, roughness: 0.35 })
+    new THREE.MeshStandardMaterial({ color: rackColor, metalness: 0.75, roughness: 0.25 })
   );
   rack.position.y = 2.5;
   rack.castShadow = true;
@@ -220,7 +220,7 @@ export function buildServer(data) {
     group.add(unit);
     const led = new THREE.Mesh(
       new THREE.SphereGeometry(0.07, 8, 8),
-      new THREE.MeshStandardMaterial({ color: 0x00ccff, emissive: 0x00ccff, emissiveIntensity: 1.2 })
+      new THREE.MeshStandardMaterial({ color: 0x00eeff, emissive: 0x00eeff, emissiveIntensity: 2.0 })
     );
     led.position.set(0.9, 0.8 + i * 0.7, 1.04);
     group.add(led);
@@ -230,9 +230,9 @@ export function buildServer(data) {
   const cap = new THREE.Mesh(
     new THREE.BoxGeometry(2.5, 0.2, 2.1),
     new THREE.MeshStandardMaterial({
-      color: isMaster ? 0xffcc33 : 0x00ccff,
-      emissive: isMaster ? 0x885500 : 0x004466,
-      emissiveIntensity: 0.8
+      color: isMaster ? 0xffdd44 : 0x00ccff,
+      emissive: isMaster ? 0xaa6600 : 0x005588,
+      emissiveIntensity: isMaster ? 2.0 : 1.5
     })
   );
   cap.position.y = 5.1;

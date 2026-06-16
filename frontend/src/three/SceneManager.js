@@ -78,43 +78,56 @@ export class SceneManager {
   }
 
   _initLights() {
-    this.scene.add(new THREE.AmbientLight(0x0d1a2e, 1.6));
+    // 低强度冷蓝环境光：保留阴影层次，维持科技感底色
+    this.scene.add(new THREE.AmbientLight(0x1a2a4a, 1.0));
 
-    const dir = new THREE.DirectionalLight(0xffffff, 1.4);
-    dir.position.set(30, 40, 20);
-    dir.castShadow = true;
-    dir.shadow.mapSize.set(2048, 2048);
-    dir.shadow.camera.near = 1;
-    dir.shadow.camera.far = 160;
-    dir.shadow.camera.left = -60;
-    dir.shadow.camera.right = 60;
-    dir.shadow.camera.top = 60;
-    dir.shadow.camera.bottom = -60;
-    this.scene.add(dir);
+    // 主光源（右上方）：强白光，产生明显明暗对比
+    const key = new THREE.DirectionalLight(0xffffff, 5.0);
+    key.position.set(30, 50, 20);
+    key.castShadow = true;
+    key.shadow.mapSize.set(2048, 2048);
+    key.shadow.camera.near = 1;
+    key.shadow.camera.far = 160;
+    key.shadow.camera.left = -60;
+    key.shadow.camera.right = 60;
+    key.shadow.camera.top = 60;
+    key.shadow.camera.bottom = -60;
+    this.scene.add(key);
 
-    const p1 = new THREE.PointLight(0x0044cc, 80, 80);
-    p1.position.set(-25, 12, 10);
+    // 填充光（左下方）：冷蓝，柔化阴影面但不消除层次
+    const fill = new THREE.DirectionalLight(0x3366cc, 1.2);
+    fill.position.set(-30, 10, -10);
+    this.scene.add(fill);
+
+    // 背光（场景后方）：勾勒轮廓
+    const rim = new THREE.DirectionalLight(0x0099ff, 0.8);
+    rim.position.set(0, 20, -50);
+    this.scene.add(rim);
+
+    // 点光源：局部氛围补光（强度收紧，聚焦主体区域）
+    const p1 = new THREE.PointLight(0x0055ff, 60, 45);
+    p1.position.set(-20, 10, 5);
     this.scene.add(p1);
-    const p2 = new THREE.PointLight(0x00ccff, 70, 80);
-    p2.position.set(25, 12, 10);
+    const p2 = new THREE.PointLight(0x00ccff, 60, 45);
+    p2.position.set(20, 10, 5);
     this.scene.add(p2);
-    const p3 = new THREE.PointLight(0x0044cc, 60, 90);
-    p3.position.set(0, 16, 30);
+    const p3 = new THREE.PointLight(0x0077ff, 50, 50);
+    p3.position.set(0, 14, 25);
     this.scene.add(p3);
   }
 
   _initGround() {
     const floor = new THREE.Mesh(
       new THREE.PlaneGeometry(100, 100),
-      new THREE.MeshStandardMaterial({ color: 0x070b12, metalness: 0.85, roughness: 0.5 })
+      new THREE.MeshStandardMaterial({ color: 0x050a14, metalness: 0.9, roughness: 0.3 })
     );
     floor.rotation.x = -Math.PI / 2;
     floor.position.y = -0.01;
     floor.receiveShadow = true;
     this.scene.add(floor);
 
-    const grid = new THREE.GridHelper(100, 50, 0x1b3a5c, 0x12283f);
-    grid.material.opacity = 0.5;
+    const grid = new THREE.GridHelper(100, 50, 0x2255aa, 0x0d1e38);
+    grid.material.opacity = 0.6;
     grid.material.transparent = true;
     this.scene.add(grid);
   }
