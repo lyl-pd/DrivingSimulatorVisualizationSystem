@@ -119,15 +119,15 @@ export class SceneManager {
   _initGround() {
     const floor = new THREE.Mesh(
       new THREE.PlaneGeometry(100, 100),
-      new THREE.MeshStandardMaterial({ color: 0x050a14, metalness: 0.9, roughness: 0.3 })
+      new THREE.MeshStandardMaterial({ color: 0x1c2d44, metalness: 0.5, roughness: 0.6 })
     );
     floor.rotation.x = -Math.PI / 2;
     floor.position.y = -0.01;
     floor.receiveShadow = true;
     this.scene.add(floor);
 
-    const grid = new THREE.GridHelper(100, 50, 0x2255aa, 0x0d1e38);
-    grid.material.opacity = 0.6;
+    const grid = new THREE.GridHelper(100, 50, 0x4488dd, 0x2255aa);
+    grid.material.opacity = 0.55;
     grid.material.transparent = true;
     this.scene.add(grid);
   }

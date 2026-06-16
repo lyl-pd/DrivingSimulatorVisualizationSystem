@@ -9,7 +9,7 @@ function createMotionPlatform() {
 
   const base = new THREE.Mesh(
     new THREE.BoxGeometry(7, 0.6, 7),
-    new THREE.MeshStandardMaterial({ color: 0x1a2535, metalness: 0.85, roughness: 0.25 })
+    new THREE.MeshStandardMaterial({ color: 0x2a3a50, metalness: 0.85, roughness: 0.25 })
   );
   base.position.y = 0.3;
   base.castShadow = true;
@@ -51,17 +51,17 @@ function createScreen() {
 }
 
 function mat(color, opts = {}) {
-  return new THREE.MeshStandardMaterial({ color, metalness: 0.5, roughness: 0.5, ...opts });
+  return new THREE.MeshStandardMaterial({ color, metalness: 0.6, roughness: 0.4, ...opts });
 }
 
 /** 机动车驾驶舱：方向盘、踏板、挡位、座椅。 */
 function createCarCockpit(color) {
   const g = new THREE.Group();
 
-  const seat = new THREE.Mesh(new THREE.BoxGeometry(1.2, 0.4, 1.2), mat(0x222831));
+  const seat = new THREE.Mesh(new THREE.BoxGeometry(1.2, 0.4, 1.2), mat(0x3a4a5c));
   seat.position.set(0, 1.1, 1);
   g.add(seat);
-  const back = new THREE.Mesh(new THREE.BoxGeometry(1.2, 1.4, 0.3), mat(0x222831));
+  const back = new THREE.Mesh(new THREE.BoxGeometry(1.2, 1.4, 0.3), mat(0x3a4a5c));
   back.position.set(0, 1.8, 1.6);
   g.add(back);
 
@@ -71,20 +71,20 @@ function createCarCockpit(color) {
   g.add(dash);
 
   // 方向盘
-  const wheel = new THREE.Mesh(new THREE.TorusGeometry(0.5, 0.08, 12, 32), mat(0x111111));
+  const wheel = new THREE.Mesh(new THREE.TorusGeometry(0.5, 0.08, 12, 32), mat(0x2a2a2a));
   wheel.position.set(0, 1.7, -0.2);
   wheel.rotation.x = Math.PI / 2.5;
   g.add(wheel);
 
   // 踏板（油门/刹车）
   [-0.35, 0.35].forEach((dx) => {
-    const pedal = new THREE.Mesh(new THREE.BoxGeometry(0.3, 0.08, 0.5), mat(0x333333));
+    const pedal = new THREE.Mesh(new THREE.BoxGeometry(0.3, 0.08, 0.5), mat(0x4a4a4a));
     pedal.position.set(dx, 0.9, -0.2);
     g.add(pedal);
   });
 
   // 挡位
-  const gear = new THREE.Mesh(new THREE.CylinderGeometry(0.06, 0.06, 0.5, 8), mat(0x444444));
+  const gear = new THREE.Mesh(new THREE.CylinderGeometry(0.06, 0.06, 0.5, 8), mat(0x555555));
   gear.position.set(0.8, 1.4, 0.4);
   g.add(gear);
 
@@ -99,24 +99,24 @@ function createMopedCockpit(color) {
   body.position.set(0, 1.3, 0);
   g.add(body);
 
-  const seat = new THREE.Mesh(new THREE.BoxGeometry(0.7, 0.3, 1), mat(0x222831));
+  const seat = new THREE.Mesh(new THREE.BoxGeometry(0.7, 0.3, 1), mat(0x3a4a5c));
   seat.position.set(0, 1.7, 0.6);
   g.add(seat);
 
   // 车把立柱
-  const stem = new THREE.Mesh(new THREE.CylinderGeometry(0.08, 0.08, 1.2, 8), mat(0x333333));
+  const stem = new THREE.Mesh(new THREE.CylinderGeometry(0.08, 0.08, 1.2, 8), mat(0x4a4a55));
   stem.position.set(0, 1.9, -1.1);
   stem.rotation.x = 0.2;
   g.add(stem);
   // 车把
-  const bar = new THREE.Mesh(new THREE.CylinderGeometry(0.05, 0.05, 1.4, 8), mat(0x111111));
+  const bar = new THREE.Mesh(new THREE.CylinderGeometry(0.05, 0.05, 1.4, 8), mat(0x2a2a35));
   bar.position.set(0, 2.4, -1.2);
   bar.rotation.z = Math.PI / 2;
   g.add(bar);
 
   // 轮子
   [1.2, -1.2].forEach((dz) => {
-    const wheel = new THREE.Mesh(new THREE.TorusGeometry(0.5, 0.12, 12, 24), mat(0x111111));
+    const wheel = new THREE.Mesh(new THREE.TorusGeometry(0.5, 0.12, 12, 24), mat(0x2a2a35));
     wheel.position.set(0, 0.9, dz);
     wheel.rotation.y = Math.PI / 2;
     g.add(wheel);
@@ -142,7 +142,7 @@ function createBikeFrame(color) {
 
   // 前后轮
   [1.3, -1.3].forEach((dz) => {
-    const wheel = new THREE.Mesh(new THREE.TorusGeometry(0.7, 0.06, 12, 32), mat(0x111111));
+    const wheel = new THREE.Mesh(new THREE.TorusGeometry(0.7, 0.06, 12, 32), mat(0x2a2a35));
     wheel.position.set(0, 0.9, dz);
     wheel.rotation.y = Math.PI / 2;
     g.add(wheel);
@@ -154,12 +154,12 @@ function createBikeFrame(color) {
   });
 
   // 座椅
-  const seat = new THREE.Mesh(new THREE.BoxGeometry(0.5, 0.15, 0.3), mat(0x222831));
+  const seat = new THREE.Mesh(new THREE.BoxGeometry(0.5, 0.15, 0.3), mat(0x3a4a5c));
   seat.position.set(0.5, 1.9, 0);
   g.add(seat);
 
   // 把手
-  const bar = new THREE.Mesh(new THREE.CylinderGeometry(0.04, 0.04, 1.0, 8), mat(0x111111));
+  const bar = new THREE.Mesh(new THREE.CylinderGeometry(0.04, 0.04, 1.0, 8), mat(0x2a2a35));
   bar.position.set(-0.5, 1.9, 0);
   bar.rotation.x = Math.PI / 2;
   g.add(bar);
@@ -199,7 +199,7 @@ export function buildServer(data) {
   const group = new THREE.Group();
 
   const isMaster = data.role === 'master';
-  const rackColor = isMaster ? 0x1e3560 : 0x0e131c;
+  const rackColor = isMaster ? 0x2a4a8a : 0x1e3050;
 
   const rack = new THREE.Mesh(
     new THREE.BoxGeometry(2.4, 5, 2),
@@ -214,7 +214,7 @@ export function buildServer(data) {
   for (let i = 0; i < 6; i++) {
     const unit = new THREE.Mesh(
       new THREE.BoxGeometry(2.2, 0.5, 0.05),
-      new THREE.MeshStandardMaterial({ color: 0x0a0f16, metalness: 0.6, roughness: 0.4 })
+      new THREE.MeshStandardMaterial({ color: 0x1a2840, metalness: 0.6, roughness: 0.4 })
     );
     unit.position.set(0, 0.8 + i * 0.7, 1.0);
     group.add(unit);
