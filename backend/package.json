@@ -1,0 +1,18 @@
+{
+  "name": "dil-backend",
+  "version": "1.0.0",
+  "description": "多车驾驶模拟器系统 3D 可视化 - 后端 API 服务",
+  "type": "module",
+  "main": "src/server.js",
+  "scripts": {
+    "start": "node src/server.js",
+    "dev": "node --watch src/server.js"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.19.2"
+  }
+}

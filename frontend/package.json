@@ -1,0 +1,20 @@
+{
+  "name": "dil-frontend",
+  "version": "1.0.0",
+  "description": "多车驾驶模拟器系统 3D 可视化 - 前端 (Vue2 + Vite + Three.js)",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "three": "^0.160.0",
+    "vue": "^2.7.16"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-vue2": "^2.3.3",
+    "vite": "^5.4.0"
+  }
+}
